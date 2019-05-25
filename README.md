@@ -1,4 +1,4 @@
-# Tutorials
+# Tutorial
 
 * [swirl](https://swirlstats.com/) software package used
 1. https://swirlstats.com/
