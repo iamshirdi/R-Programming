@@ -1,0 +1,908 @@
+getwd() to current directory
+
+read.csv("mydata.csv") must be in working directory
+dir()
+
+ls() to get all functions
+rm(list=ls())
+
+save r script and use source("mycode.R") to load all code into it for cmd
+all functions will load
+
+R implemetnation of S-fortan-c++
+r- slanguage
+any os playstationetc
+best interactive statsticla visual language
+
+opensource-no company to contact
+objects must be stored in physcial memory limiation
+
+base r- CRAN
+basic packages-grid,methods,tools,utils,stat,datasets
+
+standards-to be on CRAN-quality for packages
+biconductor project- another for packages
+and private sites etc
+
+left assignment to assign value
+x<-1
+expression-numeric 
+msg<-"hello"
+msg to print instead of print(msg)
+
+## comments
+
+in r left bracket shows element of vector
+x<-1:20
+
+everything in r is object
+atomic classes of object
+char,num-real,int,complex,logical
+vector- same class- no mix
+list-multiple objects
+
+vector()-empty vector
+first arg class second arg in it length
+default 0
+
+all numbers in R are double precision
+1L-expictly gives integer
+
+Inf- 1/0 and also -Inf
+NaN- special number -0/0 not number-missing value also
+
+each object in R has attribute
+-names,dimname,class,length,other userdefined attributes/metadata
+
+attributes()-to access -to set or modify for object
+
+vector can also be created by c
+x<-c(0.5,0.6) concanat creates vector
+c(T,2)
+true can be cpnverted to number least common denominator which is char,number,logical here-since vector same type
+corecion occurs in R
+
+as.numeric(x)- convert
+class(x)-to get class
+greater than 0 true
+default is num format
+
+nonsensical cohersion nan values-error
+
+c("a","b")
+as.numeric(x)
+
+list prints
+double bracket and seperate prints lunike vector	
+list()
+
+matrix(1:6,nrow=2,ncol=3)
+attribute- dimensions
+colunm wise specified
+
+dim(m)
+attributes(m)- has dimensions
+
+m<-1:10
+dim(m)<-c(2,5)same as nrow,ncol
+m now becomes matrix
+created by adding dim attribute
+
+cbind- binding colunms and rows- colunm wise
+rbind- rowvise
+
+factor-special vector-categorical
+ordered-professors,etc,unordered-male,female
+represtetn inegers-high,med,low
+attribute-levels and its attrib
+table- to find frequency
+unclass-represent integers- how underneath represented in elvels
+attribute()-gives yes,no
+levles explcitly argument so baseline in levels attributes changes
+otherwise default attributical order
+factor- built into variables integers
+
+is.na() and nan
+na also has classes-int
+na and nan are not same
+na also returns nan and na true unlike nan where na returns false
+so is nan doesnt find na only nan
+
+data frames:-
+tabular length
+sspecial type of list- same every length every colunm
+row names-colunm names-attributes
+table to matrix- coherece occurs
+data.frame(foo=1:4,bar=c(T,T,F,F))-colunm wise
+nrow(x) and ncol(x)
+
+
+r objects has names
+names(x) -null
+names(x)<-c(fool) etc
+then names assign
+list also has names
+dimnames for matrix
+dimnames(m)<-list(c('a','b'),c('c','d'))-rows,matrix named
+
+read.table and read.csv- colunm,row format and returns dataframe format
+readLines-reading lines of any file- character vector
+dget- reading robjects deparsed into text files--dput
+source and dump inverse
+unserialize for reading single R objects in binary form
+
+write.table
+writeLines
+save
+serialize
+
+read.table-arg-file,header,sep.colunms,spaces,table etc,colClasses-notrequried,nrows-notrequired,comment.char-right of it,skip-skips the number,stringasfactors
+
+read.csv default serpeator-comma and table is space
+skips lines with #
+comment.char="" it is blank
+specifying classes-for fast instad of figuring it out takes time
+
+sapply-looping through each colunm for limited data read and then keep it colClasses
+nrows-for checking memory required- automatically reads all even if wrong
+
+64 bit-access memory if pc has lot of memory
+
+numeric-64 bits so 8bytes per numeric
+/2power20 for mb-and 2power10 for gb
+more also need because overhead required for the data in
+
+metadata-class,attributes,class colunms- dumps,dputting it
+
+dget-single r object unlike dump
+rm(x,y) to remove objects after dumping and then can load etc
+
+connections
+like read.table -file-opens connection to file
+url-open connection to webpage
+gzfile,bzfile for bzip2
+
+open-r and rb for binary etc
+
+con<file("foo.txt","r")
+d<-read.csv(con)
+close(con)
+
+same as read.csv("foo.txt")
+
+con<-gzfile(word.gz)
+x<-readLines(con,10)
+head(x)
+
+connection to open and then read to extract text from the file
+otherwise compressed,url etcc unlike foo.txt which is pure
+
+subset-[ same class as origin- more element than object
+[[-like list extract elements in each element of list
+$-extract list or data frame that has names- reference
+-symentatics same as [[ - may or may not be of same class
+
+x<["a","b",c]
+x[1] index acess numeric
+or logic operation
+u<-x<"b"-- logic
+x[u]-- then access it 
+
+x<-list(foo=1:4)
+x[1] gives $foo a list
+x[[1]]- gives 1,2,3,4
+
+x$foo- same 1,2,3,4
+helpful not to remmeber but can use names to extract
+
+x[c(1,3)]
+
+returns- elements of foo and baz
+
+x$name searches for name elment in list unlike
+name<-foo
+x[[name]]
+
+
+x[[c(1,3)]]
+gives 3rd element in 1st list
+
+matrix
+x[1,] wild card for row 1 all elements
+
+usually matrix doesnt return same type for single bracket
+it returns number
+so can turn off by using drop=false
+returns 1 by 1 matrix
+if true drops dimesnions 2d to 1d - efault
+
+partial matching:-
+command line x$a matches aadvak element in list- wild card automaticcally
+double bracket x[[a]]- doesnt match list
+exact=false then matches to closes same as $
+
+bad<-is.na(x) logical vector so now x[!bad] can strip elements
+complete.cases - multiple things
+both elements are non missing like complet.ecases(x,y)
+useful for vectors,matrixes etc- all rows non missing
+airquality[good,][1:6,]
+
+vectorized operations of R
+like matlab
+paralelle instead of loop like x+y vector matrixes
+
+x*y element wise
+x%*%y for true matrix multiplication
+
+
+ctrl+l to clear console
+rm(list=ls())- workspace clear
+
+
+
+quiz1=unzip("quiz1_data.zip",list=TRUE) to list
+
+data=read.csv(unz("quiz1_data.zip","hw1_data.csv")) to read
+
+install.packages("swirl")
+
+
+library(swirl) to load packages everytime we use swirl
+packageVersion("swirl")
+
+?c for help builtin use this ?
+
+If the vectors\
+| are of different lengths, R 'recycles' the shorter vector until it is the
+| same length as the longer vector.
+
+R is 'recycling' the 2 to make a vector of 2s and the 100
+| to make a vector of 100s. In other words, when you ask R to compute z * 2 +
+| 100, what it really computes is this: z * c(2, 2, 2) + c(100, 100, 100).
+
+If the length of the shorter vector does not divide evenly into the length of
+| the longer vector, R will still apply the 'recycling' method, but will throw
+| a warning to let you know something fishy might be going on.
+
+tab key for autocompletion
+
+ R commands are the same as their equivalents commands on Linux or on a
+| Mac. Both Linux and Mac operating systems are based on an operating system
+| called Unix. It's always a good idea to learn more about Unix!
+
+ls()- objects in workspace
+getwd()- path currect working directory
+
+args() function on a function name is also a handy way to see what
+| arguments a function can take.
+	
+
+dir.create()
+Set your working directory to "testdir" with the setwd() command.
+
+
+Create a file in your working directory called "mytest.R" using the
+| file.create() function.
+file.exists
+
+Access information about the file "mytest.R" by using file.info().
+
+file.rename
+file.copy
+Provide the relative path to the file "mytest3.R" by using file.path().
+You can use file.path to construct file and directory paths that are
+| independent of the operating system your R code is running on. Pass 'folder1'
+| and 'folder2' as arguments to file.path to make a platform-independent
+| pathname.
+
+you must enclose the symbol in backticks like this: ?`:`. (NOTE: The
+| backtick (`) key
+
+seq(1.5,0.5)
+seq(5, 10, length=30) - does not care increment
+
+Another option is to use seq(along.with = my_seq). for 1:length(my_seq)
+seq_along(my_seq)
+
+ rep(c(0, 1, 2), times = 10). to make a vector containing 10 times.
+instead of time if each then it will become each repeating
+
+
+paste()- for collapsing into one if collapse=" " then space between each
+joins all elements in vector
+
+paste("Hello", "world!", sep = " "),
+| where the `sep` argument tells R that we want to separate the joined elements
+| with a single space.
+
+paste(1:3,c("X", "Y", "Z"),sep="")
+[1] "1X" "2Y" "3Z"
+
+paste(LETTERS, 1:4, sep = "-") predefined letters keyword - recycling-repeating
+
+to take sample where z is rep 100 and y is rnorm
+my_data <-
+| sample(c(y, z), 100).
+
+my_data==NA will get all NA because its not value but placeholder for quantity tht is not availbale
+
+nan second data type 0/0
+Inf-Inf
+
+Since NA is not a value, but rather a placeholder for an unknown quantity,
+| the expression NA > 0 evaluates to NA.Hence we get a bunch of NAs mixed in
+| with our positive numbers when we do this.
+
+x[!is.na(x) & x>0]
+
+of a vector is considered element 0. R uses
+| 'one-based indexing', which (you guessed it!) means the first element of a
+| vector is considered element 1.
+r doesnt prevent from accessing 0 also x[0] and x[30000] not excisting values also returns nA
+
+[c(-2, -10)] gives us all elements of x
+| EXCEPT for the 2nd and 10 elements.  Try x[c(-2, -10)] now to see this.
+x[-c(2,10)]
+
+identical to check values even though differnet names
+names to assign
+
+Also, remember that you don't need the c() function when using `:`.
+
+
+dim and another way is to see its attributes
+
+repeat
+next:-skip itereation
+break:-skip loop
+
+y<-if loop returns r format
+
+r returns last expression in fuction or loop etc
+means<-numeric(nc)
+sd()
+
+removeNA=TRUE
+na.rm=removeNA
+
+function are stoed as r objects of class function like logical complex
+
+functions is treated as objects so cant pass as arguments to other functions
+
+argument matching - match argument to not assigned by order
+better use arguments by order while writing - call by name so not remmeber order and mess up
+partial matching:-exact,partial,positional
+d null- not there
+if only one arg take first and rest not defined it gets result i not used with in function like a using and b not using in functiion
+
+after ... named explictly not matches
+where ... many arguments and also canot be known in advance
+
+lazy evaluation- function . only when evaluated error
+
+... for plot only lines
+myplot<-function(x,y,type=1,...)
+plot(x,y,type=type,...)
+
+ndim(m)<-c(4,5)
+changes to matrix but its just atomic vector with dimesnisons
+
+class- dataframe() gives dataframe which can accept any classlike str,num unlike matrix
+
+The `&&`
+| version of AND only evaluates the first member of a vector.
+> TRUE && c(TRUE, FALSE, FALSE)
+[1] TRUE
+
+or symbol- |
+
+order and operator is evaluated then or operator 
+
+scoping rules makes r different from s
+
+x,y formal variables in function defined
+z free variable- scoping rules determine how to assign
+function+env is closure
+global env- parent env.search list-top level env.is the namespace of package envirnment.init-empty environment
+
+r differnece from c where function define inside other functions
+insides of other functions
+powe environment within 
+ls(environment(cube))
+get(n
+
+lexical scoping vs dynamic scoping
+within function variable locla variable
+gloal vairable 
+
+lexical scoping-common lisp,python,perl,scheme
+-static-java,c++
+
+dynamic scoping-searches.returns variable in current environemnt then successively all the calling functions
+unlike static which ignores returning variable iin curent environment	
+
+// A C program to demonstrate static scoping. 
+#include<stdio.h> 
+int x = 10; 
+
+// Called by g() 
+int f() 
+{ 
+return x; 
+} 
+
+// g() has its own variable 
+// named as x and calls f() 
+int g() 
+{ 
+int x = 20; 
+return f(); 
+} 
+
+int main() 
+{ 
+printf("%d", g()); 
+printf("\n"); 
+return 0; 
+} 
+
+returns 10 for static and 20 for dynamic
+
+dates-dates class-year month date
+unclass will get 0 because 0 days from 1870 if its january 1st-underlying representaition
+times-posixct class- large integers
+posixlt class-list underlying
+p$sec-works for list only
+sys.time()
+
+
+as.poxlt(p,tx='GMT') etcc ways to convert
+generic function on above classes
+
+strptime(cv,%B,%d)-strings or differnet formats to convert is time object
+class is posixlt format
+
+
+lm- myfunction or stats
+to bind value searches environement
+global env:- user workspace all defined symbols,functions
+then namespaces of each of packages.
+search list 2nd is stat,graphics etc,last base package.
+user loads packages in environemnt :- namespace of that package is put second of global env and rest pushed downd
+r seperate namespaces for functions and non function.
+c function and c vector not interfere
+
+r difference s is scoping rule
+in function:- function variable formal arguments, not defined function-free variable
+r uses lexical scoping for statstical useful
+
+lexical scoping:-
+first searches environemnt.- symbol and value in which it was defined.
+parent and child
+no parent is empty environment
+function+env:-closer or function clouser
+each package has namespace that is environment
+
+
+function defined global env then parent evn next in search list
+top level environment is usually global env 
+if defined in package then namespace is the top environemnt
+then search list continues until it hits empty enviroment which is after base pakage
+
+in r you can have functions inside other functions
+another function defined in function is returned 
+when you call in c it wont let you do this
+that is returning antother function
+
+r memory problem
+original s everything gloabl workspace so disk storage
+
+Question 10
+In R, what is the parent frame?
+
+
+It is the environment in which a function was called
+
+if statment on vector only first element evaluates
+
+xor
+1 0 1
+0 1 1
+1 1 0
+0 0 0
+
+ints <- sample(10)
+`ints` is a random sampling of integers from 1 to 10 without
+| replacement
+
+which() function takes a logical vector as an argument and returns the
+| indices of the vector that are TRUE. F
+which(ints>7)
+[1] 5 7 9
+
+The any() function will return TRUE if one or more of the
+| elements in the logical vector is TRUE. The all() function will return TRUE
+| if every element in the logical vector is TRUE.
+returns only one true or false
+any(ints==10) returns true example
+
+Sys.Date()
+mean() function takes a vector as an argument
+
+two slogans are helpful: 1. Everything that
+| exists is an object. 2. Everything that happens is a function call.
+
+%% modulus gives remainder
+
+
+you can see a function's arguments (besides looking at the documentation).
+| Thankfully, you can use the args() function! Type: args(remainder) to examine
+| the arguments for the remainder function.
+
+
+You can pass functions as arguments to other functions just like you can pass
+# data to functions
+
+
+| Remember that arguments can come after ...
+
+Do your argument unpacking here!
+  args<-list(...)liba
+
+
+user defined binary operators
+ "%mult_add_one%" <- function(left, right){ # Notice the quotation marks!
+#   left * right + 1
+# }
+#
+# I could then use this binary operator like `4 %mult_add_one% 5` which would
+# evaluate to 21.dldl
+
+
+d2<-as.Date("1969-01-01")
+
+As you may have anticipated, you get a negative number. In this case, it's
+| -365, since 1969-01-01 is exactly one calendar year (i.e. 365 days) BEFORE
+| 1970-01-01.
+
+
+
+
+str(unclass(t2)) for compact view of POSIXlt
+
+Now that we have explored all three types of date and time objects, let's
+| look at a few functions that extract useful information from any of these
+| objects -- weekdays(), months(), and quarters().
+
+strptime() converts character vectors to POSIXlt. In that sense, it is
+| similar to as.POSIXlt(), except that the input doesn't have to be in a
+| particular format (YYYY-MM-DD).
+
+strptime(t3, "%B %d, %Y %H:%M")
+
+Sys.time()-t1 gives mins
+Use difftime(Sys.time(), t1, units = 'days') to find the amount of time in
+| DAYS that has passed since you created t1.
+
+
+lapply:- loop a list and apply function
+returns list and input is cohereced to list
+
+runif(n) generate random uniform n values
+x<-list(a=matrix(1:4,2,2),b=matrix(1:6,3,2))
+lapply(x,function(fn) fn[,1]) -annoymous function
+extract colunm function of a and b
+
+sapply:- na.rm=true
+list every element is 1
+vector returned
+same length element then matrix
+otherwise list if other object
+
+apply:-
+rows or colunms of matrix
+not faster than for loop for present s- less typing
+matrix 2d array
+apply(x,margin=2,mean) colunm opperation 
+margin=1 on row operation
+here sum mean is faster than other-optimized
+
+apply(x,c(1,2),mean) collapse 3rd dimension
+meaning average over 3rd dimesnion and gives 2by2 for x(c(2,2,10))--output is -(2,2)
+dims=2 is same as above
+
+mapply-multivarate apply
+two lists example
+function(fun-3 args if 3 lists
+mapply(rep,1:4,4:1)
+list(rep(1,4),rep(2,3),rep(3,2),rep(4,1))
+vector of arguments
+noise(num of randomvariables=1:5,mean=1:5,std=2)
+list(noise(1,1,2),noise(2,2,2)....)
+
+tapply:-function over subsets of vector
+groups tapply mean within mean and women first 50 functions
+x<-c(rnorm(10,runif(10),rnorm(10,1)))
+f<-gl(3,10)
+tapply(x,f,mean,simply=true)-returns sapply
+range insplace of mean gives min and max
+
+split(x,f,drop=)
+drop to empty factor levels
+tapply-lapply(split(x,f),mean)
+split into lists unlike tapply which keeps it in same list after applying functions
+
+
+
+interaction(f1,f2) gives combination
+list(f1,f2) same as interaction
+
+message
+warning
+log(-1) - nan log doesnt accept negative
+no need to stop negative values feeding
+error- stop function
+invisible(x) -autoprint at end prevents but returns value invisibly
+if cant compare na values unlike numbers so error
+condition- condition error try and except
+
+debug tools
+traceback- most recent functions
+where error occurs in function which has multiple functions
+debug(lm)- displays function
+browse-n
+Q to exit
+debug(ls)
+When you next call the 'ls' function
+Execution of 'ls' will suspend at the beginning of the function and you will be in the browser.
+all functions from this point goes debugging
+debuggingState(on=FALSE) must enter to stop it
+
+
+workspace in workspace-function environment
+n for next and enter- for each line to find error
+recover- interactive above
+options(error=recover) for global
+traceback like menu to check each function browse
+
+ list returned by lapply() is a character vector of length one (i.e. "integer"
+| and "vector"), cls_list can be simplified to a character vector. To do this
+| manually, type as.character(cls_list).
+
+$topleft --- list wise
+[1] "factor"
+
+$botright
+[1] "factor"
+
+as.character output
+ "factor"  "integer" "integer" "integer" "integer" "integer" "integer"
+ 
+
+
+ In general, if the result is a list where every element is of length one,
+| then sapply() returns a vector. If the result is a list where every element
+| is a vector of the same length (> 1), sapply() returns a matrix. If sapply()
+| can't figure things out, then it just returns a list, no different from what
+| lapply() would give you.
+The first argument is the object over
+| which we are looping (i.e. flag_colors) and the second argument is the name
+| of the function we wish to apply to each column (i.e. sum). Remember that the
+| second argument is just the name of the function with no parentheses, etc.
+
+| Perhaps it's more informative to find the proportion of flags (out of 194)
+| containing each color. Since each column is just a bunch of 1s and 0s, the
+| arithmetic mean of each column will give us the proportion of 1s. (If it's
+| not clear why, think of a simpler situation where you have three 1s and two
+| 0s -- (1 + 1 + 1 + 0 + 0)/5 = 3/5 = 0.6).s
+
+ The Flags dataset from the UCI Machine Learning Repository contains details
+| of various nations and their flags. More information may be found here:
+| http://archive.ics.uci.edu/ml/datasets/Flags
+
+I've stored the data in a variable called flags. If it's been a while since
+| you completed the 'lapply and sapply' lesson, you may want to reacquaint
+| yourself with the data by using functions like dim(), head(), str(), and
+| summary() when you return to the prompt (>). You can also type viewinfo() at
+| the prompt to bring up some documentation for the dataset. 
+
+
+
+vapply:-
+ vapply()
+| allows you to specify it explicitly. If the result doesn't match the format
+| you specify, vapply() will throw an error, causing the operation to stop.
+
+if you had forgotten how unique() works and mistakenly thought it
+| returns the *number* of unique values contained in the object passed to it?
+| Then you might have incorrectly expected sapply(flags, unique) to return a
+| numeric vector,
+
+
+vapply(flags, unique, numeric(1))
+
+ The 'character(1)' argument tells R
+| that we expect the class function to return a character vector of length 1
+
+displays :--  name   landmass 
+no error
+
+Use
+| table(flags$landmass) to see how many flags/countries fall into each group
+
+
+
+You can see a summary of populations for countries with and without the color
+| red on their flag with tapply(flags$population, flags$red, summary).
+
+> tapply(flags$population, flags$red, summary)
+$`0`
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.00    0.00    3.00   27.63    9.00  684.00 
+
+$`1`
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    0.0     0.0     4.0    22.1    15.0  1008.0 
+
+remember second argument is factor -groups
+first arg is data .
+second arg tellls data belonging to group
+and operation 3rd arg is applied accordingly
+
+
+library(datasets)
+
+data(iris)
+description of data:
+?iris
+
+#Rscript iris.R to run from command line
+
+to run script form R studio
+source("myScript.r", echo = TRUE)
+
+str - simple diagnostic function
+alternate to summary function
+one line per basic object
+
+str(lm or ls)
+x<-rnorm(100,2,4)
+summary(x) for mean median etc
+str(x) - numeric and 1 to 100 and same summary as above
+quick examine of data
+
+s<-split(airquality,airquality$month)
+splits by month
+
+simulation:-
+rnorm(mean,sd)
+dnorm- evaluates density for given mean sd
+pnorm - evaluates cummulative distribution for normal distribution
+rpois(10,2):- 10 variables with rate 2 
+generate random poisson variates with given rate
+ppois(4,2) evaluates cummlative which is pr(x<=4) for rate 2.
+
+default is mean 0 and sd 1 for above if not specified
+
+every distribution above has
+d density
+r random number generation
+p cummulative distribution
+q quantitative function
+
+set.seed(1)
+rnorm(5)
+
+rbinorm- binomial distribution
+rbinorm(100,1,0.5) - 0.5 probability foor coming one.
+
+sample(letters or 1:10,5)
+randomly draws from first arg
+if not specified gives permutation random order
+5 710 5 6 3 2 1 8
+replace=True with replacement repeat
+
+R profiler
+why taking long time how to fix strategies-useful big data.
+systematic way to examine how much time is spend in different parts of program.
+
+RULE OF THUmb:- readbility design then optimize	
+
+system.time() takes an expression. 
+error then time till  it
+class-proc_time
+user time- cpu time
+elapsed time- u expressed rime
+
+elapsed time smaller occurs for multicore
+parallel processing,multi threadblas libraries
+svd-multithread example-splitted two cpus so 0.7*2
+and elapsed which is user -same 0.7
+
+system.time(readLines("ww.js.edu")
+cpu doesnt spend time.
+network factor
+
+Rprof()- used to start rprofiler
+0.02 sec-sample rate-not useful for small
+function call stack- right to left
+
+summaryRprof()-more useful than raw
+by.total-divide the time spend in each function by total run time
+
+by.self-does the same subtracts out time spent in functions above in call stack
+top level function often calls helper function
+subtract tells how much spent in given function after subtracting helper functions its calling giving us its self time function
+
+sample.interval-
+sample.time- used for evaluations by profiler
+
+c or fortan code if callend canot be profiled
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
